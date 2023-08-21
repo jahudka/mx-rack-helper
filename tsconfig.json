@@ -1,0 +1,20 @@
+{
+  "extends": "@tsconfig/node18",
+  "compilerOptions": {
+    "target": "ES2020",
+    "moduleResolution": "NodeNext",
+    "types": ["node"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noEmitOnError": true,
+    "strictNullChecks": true,
+    "outDir": "build"
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}
