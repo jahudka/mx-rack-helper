@@ -1,15 +1,14 @@
+#!/usr/bin/env node
+
 import { findMixer } from './findMixer';
-import { getCapturePorts, setAlias } from './jackd';
+import { setPortAliases } from './reaper';
 
 (async () => {
   const scanner = await findMixer();
   await scanner.ensureSampleRate();
 
   const outputs = await scanner.scanCardRouting();
-  const ports = await getCapturePorts();
   await scanner.terminate();
 
-  for (const port of ports) {
-    await setAlias(port, outputs[port] ?? null);
-  }
+  await setPortAliases(process.argv[2], outputs);
 })();
