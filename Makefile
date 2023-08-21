@@ -8,6 +8,7 @@ clean:
 .PHONY: build
 build:
 	node_modules/.bin/tsc
+	chmod +x build/cli.js
 
 .PHONY: rebuild
 rebuild: clean build

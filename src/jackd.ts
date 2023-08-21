@@ -8,7 +8,7 @@ export async function getCapturePorts(): Promise<number[]> {
 
 export async function setAlias(port: number, alias: string | null): Promise<void> {
   const cmd = typeof alias === 'string'
-    ? `jack_alias system:capture_${port} ${alias}`
+    ? `jack_alias system:capture_${port} "${alias.replace(/"/g, '\\"')}"`
     : `jack_alias -u system:capture_${port}`;
 
   await asyncExec(cmd);
