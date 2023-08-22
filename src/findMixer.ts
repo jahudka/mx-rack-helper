@@ -17,14 +17,14 @@ export async function findMixer(): Promise<MixerScanner> {
     });*/
   });
 
-
-  await mx32.start();
-  await mxair.start();
-
-  return result.finally(async () => {
+  try {
+    await mx32.start();
+    await mxair.start();
+    return await result;
+  } finally {
     mx32.off();
     mxair.off();
     await mx32.stop();
     await mxair.stop();
-  });
+  }
 }
