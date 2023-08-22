@@ -5,8 +5,11 @@ default: rebuild
 clean:
 	rm -rf build
 
+node_modules:
+	npm ci
+
 .PHONY: build
-build:
+build: node_modules
 	node_modules/.bin/tsc
 	chmod +x build/cli.js
 
