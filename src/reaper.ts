@@ -9,7 +9,7 @@ export async function setPortAliases(configPath: string, aliases: (string | null
   const map = config.alias_in_JackIn;
 
   for (let i = 0; i < map.map_size; ++i) {
-    map[`name${i}`] = aliases[i];
+    map[`name${i}`] = aliases[i] ?? '';
   }
 
   await writeFile(configPath, encode(config));

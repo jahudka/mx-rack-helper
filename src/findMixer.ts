@@ -1,7 +1,7 @@
 import { MXDiscoveryService } from '@mxfriend/common';
 import { MX32_UDP_PORT } from '@mxfriend/libmx32';
 import { MXAIR_UDP_PORT } from '@mxfriend/libmxair';
-import { MixerScanner, MX32Scanner } from './scanner';
+import { MixerScanner, MX32Scanner, MXAirScanner } from './scanner';
 
 export async function findMixer(): Promise<MixerScanner> {
   const mx32 = new MXDiscoveryService(MX32_UDP_PORT, 1000, 10000);
@@ -12,9 +12,9 @@ export async function findMixer(): Promise<MixerScanner> {
       resolve(MX32Scanner.create(ip));
     });
 
-    /*mxair.on('mixer-found', ({ ip }) => {
-      resolve(new MXAirOSCPort({ mixerAddress: ip }));
-    });*/
+    mxair.on('mixer-found', ({ ip }) => {
+      resolve(MXAirScanner.create(ip));
+    });
   });
 
   try {
