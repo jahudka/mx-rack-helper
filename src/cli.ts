@@ -7,6 +7,11 @@ import { setPortAliases } from './reaper';
   while (true) {
     try {
       const scanner = await findMixer();
+
+      if (!scanner) {
+        return;
+      }
+
       await scanner.ensureSampleRate();
 
       const outputs = await scanner.scanCardRouting();
